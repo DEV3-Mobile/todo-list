@@ -1,20 +1,30 @@
-// import React, { useState } from 'react';
+import React, { useState } from 'react';
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, TextInput, View, Button, ScrollView } from 'react-native';
+import { StyleSheet, Text, TextInput, View, Button, FlatList } from 'react-native';
+import TaskItem from './components/TaskItem';
+
 //Task = todo item
 
 export default function App() {
+  const [enteredTask, setEnteredTask] = useState('');
+  const [tasks, setTasks] = useState([]);
 
   const taskInputHandler = (enteredText) => {
     console.log(enteredText);
+    setEnteredTask(enteredText);
   }
   const addTaskHandler = () => {
-    console.log("clicked");
+    console.log(enteredTask);
+    // const tasksTemp = tasks;
+    // tasksTemp.push(enteredTask);
+    // setTasks(tasksTemp);
+    setTasks((currentTasks) => [...currentTasks, enteredTask]);
   }
 
   return (
     <View style={styles.screen}>
       <StatusBar style="auto" />
+      {console.log(tasks)}
       <View style={styles.inputContainer}>
         <TextInput
           placeholder="add task..."
@@ -24,14 +34,11 @@ export default function App() {
         />
         <Button title="ADD" onPress={addTaskHandler} />
       </View>
-      <ScrollView>
-        <View style={styles.listItem}>
-          <Text>Task 1</Text>
-        </View>
-        <View style={styles.listItem}>
-          <Text>Task 2</Text>
-        </View>
-      </ScrollView>
+      <FlatList data={tasks} renderItem={(itemData) => (
+        <TaskItem taskname={itemData.item} />
+      )} />
+
+      //https://pastebin.com/SwRT2shN
     </View >
   );
 }
@@ -51,12 +58,5 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     padding: 10,
     marginBottom: 10,
-  },
-  listItem: {
-    padding: 10,
-    marginVertical: 10,//bestaat niet in CSS
-    backgroundColor: '#ccc',
-    borderColor: 'black',
-    borderWidth: 1,
   }
 });
