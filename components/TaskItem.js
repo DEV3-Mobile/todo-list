@@ -5,14 +5,14 @@ const TaskItem = props => {
   return (
     <View style={styles.task}>
       <Text
-        style={styles.itemList}>{props.taskId} - {props.taskname}</Text>
+        style={styles.itemList}>{props.taskname}</Text>
       <View
         style={styles.taskButtons}>
-        <TouchableOpacity
+        {/* <TouchableOpacity
           onPress={() => { console.log("should edit") }}>
           <Text
             style={styles.editButton}>Edit</Text>
-        </TouchableOpacity>
+        </TouchableOpacity> */}
         <TouchableOpacity
           onPress={() => props.onTaskDelete(props.taskId)}>
           <Text
