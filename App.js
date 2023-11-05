@@ -20,7 +20,7 @@ export default function App() {
 
   const deleteTaskHandler = (index) => {
     const tempTasks = [...tasks];//tasks is read-only dus in tijdelijke array stoppen die je dan kan splicen, het resultaat stop je in de state "wachtrij" met setTasks
-    tempTasks.splice(index, 1);
+    tempTasks.splice(index, 1);//https://www.w3schools.com/jsref/jsref_slice_array.asp
     // console.log(tempTasks);
     setTasks(tempTasks);
   };
