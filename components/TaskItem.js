@@ -1,21 +1,52 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 
 const TaskItem = props => {
   return (
-    <View style={styles.listItem}>
-      <Text>{props.taskname}</Text>
+    <View style={styles.task}>
+      <Text
+        style={styles.itemList}>{props.taskname}</Text>
+      <View
+        style={styles.taskButtons}>
+        <TouchableOpacity
+          onPress={() => console.log("should delete")}>
+          <Text
+            style={styles.editButton}>Edit</Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          onPress={() => { console.log("should delete") }}>
+          <Text
+            style={styles.deleteButton}>Delete</Text>
+        </TouchableOpacity>
+      </View>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
-  listItem: {
-    padding: 10,
-    marginVertical: 10,//bestaat niet in CSS
-    backgroundColor: '#ccc',
-    borderColor: 'black',
-    borderWidth: 1,
+  task: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+    marginBottom: 15,
+    fontSize: 18,
+  },
+  itemList: {
+    fontSize: 19,
+  },
+  taskButtons: {
+    flexDirection: "row",
+  },
+  editButton: {
+    marginRight: 10,
+    color: "green",
+    fontWeight: "bold",
+    fontSize: 18,
+  },
+  deleteButton: {
+    color: "red",
+    fontWeight: "bold",
+    fontSize: 18,
   }
 });
 

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, TextInput, View, Button, FlatList } from 'react-native';
+import { StyleSheet, Text, TextInput, View, Button, FlatList, TouchableOpacity } from 'react-native';
 import TaskItem from './components/TaskItem';
 
 //Task = todo item
@@ -26,37 +26,61 @@ export default function App() {
   );
 
   return (
-    <View style={styles.screen}>
+    <View style={styles.container}>
       <StatusBar style="auto" />
       {console.log(tasks)}
-      <View style={styles.inputContainer}>
-        <TextInput
-          placeholder="add task..."
-          style={styles.input}
-          clearButtonMode="always"
-          onChangeText={taskInputHandler}
-        />
-        <Button title="ADD" onPress={addTaskHandler} />
-      </View>
+      <Text style={styles.heading}>To Do App</Text>
+      <TextInput
+        style={styles.input}
+        placeholder="Enter task"
+        value={enteredTask}
+        onChangeText={taskInputHandler}
+      />
+      <TouchableOpacity
+        style={styles.addButton}
+        onPress={addTaskHandler}>
+        <Text style={styles.addButtonText}>Add Task</Text>
+      </TouchableOpacity>
       <FlatList data={tasks} renderItem={renderItem} />
     </View >
   );
 }
 
 const styles = StyleSheet.create({
-  screen: {
-    padding: 50,
+  container: {
+    flex: 1,
+    padding: 40,
+    marginTop: 40,
   },
-  inputContainer: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
+  title: {
+    fontSize: 24,
+    fontWeight: "bold",
+    marginBottom: 20,
+  },
+  heading: {
+    fontSize: 30,
+    fontWeight: "bold",
+    marginBottom: 7,
+    color: "green",
   },
   input: {
-    width: '80%',
-    borderColor: 'black',
-    borderWidth: 1,
+    borderWidth: 3,
+    borderColor: "#ccc",
     padding: 10,
     marginBottom: 10,
+    borderRadius: 10,
+    fontSize: 18,
+  },
+  addButton: {
+    backgroundColor: "green",
+    padding: 10,
+    borderRadius: 5,
+    marginBottom: 10,
+  },
+  addButtonText: {
+    color: "white",
+    fontWeight: "bold",
+    textAlign: "center",
+    fontSize: 18,
   }
 });
