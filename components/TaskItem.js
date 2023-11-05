@@ -14,7 +14,7 @@ const TaskItem = props => {
             style={styles.editButton}>Edit</Text>
         </TouchableOpacity>
         <TouchableOpacity
-          onPress={() => props.onDelete(props.taskId)}>
+          onPress={() => props.onTaskDelete(props.taskId)}>
           <Text
             style={styles.deleteButton}>Delete</Text>
         </TouchableOpacity>

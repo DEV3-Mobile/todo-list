@@ -29,8 +29,7 @@ export default function App() {
     <TaskItem
       taskId={itemData.index}
       taskname={itemData.item}
-      onDelete={deleteTaskHandler}
-    />
+      onTaskDelete={deleteTaskHandler} />
   );
 
   return (
