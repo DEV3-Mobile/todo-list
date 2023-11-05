@@ -1,26 +1,21 @@
 import React, { useState } from 'react';
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, TextInput, View, Button, FlatList, TouchableOpacity } from 'react-native';
+import TaskInput from './components/TaskInput';
 import TaskItem from './components/TaskItem';
 
-//Task = todo item
+//1 task is een 1 todo item op de todo lijst
 
 export default function App() {
-  const [enteredTask, setEnteredTask] = useState("");
   const [tasks, setTasks] = useState([]);
 
-  const taskInputHandler = (enteredText) => {
-    console.log(enteredText);
-    setEnteredTask(enteredText);
-  }
-  const addTaskHandler = () => {
-    console.log(enteredTask);
+  const addTaskHandler = (taskToAdd) => {
+    console.log(taskToAdd);
     // const tasksTemp = tasks;
     // tasksTemp.push(enteredTask);
     // setTasks(tasksTemp);
     // niet nodig --> return nieuwe array met spread syntax + entered task op laatste index.
-    setTasks((currentTasks) => [...currentTasks, enteredTask]);
-    setEnteredTask("");//enteredTaks leegmaken
+    setTasks((currentTasks) => [...currentTasks, taskToAdd]);
   }
 
   const renderItem = (itemData) => (
@@ -29,20 +24,10 @@ export default function App() {
 
   return (
     <View style={styles.container}>
-      <StatusBar style="auto" />
       {console.log(tasks)}
+      <StatusBar style="auto" />
       <Text style={styles.heading}>To Do App</Text>
-      <TextInput
-        style={styles.input}
-        placeholder="Enter task"
-        value={enteredTask}
-        onChangeText={taskInputHandler}
-      />
-      <TouchableOpacity
-        style={styles.addButton}
-        onPress={addTaskHandler}>
-        <Text style={styles.addButtonText}>Add Task</Text>
-      </TouchableOpacity>
+      <TaskInput onAddTask={addTaskHandler} />
       <FlatList data={tasks} renderItem={renderItem} />
     </View >
   );
@@ -64,25 +49,5 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     marginBottom: 7,
     color: "green",
-  },
-  input: {
-    borderWidth: 3,
-    borderColor: "#ccc",
-    padding: 10,
-    marginBottom: 10,
-    borderRadius: 10,
-    fontSize: 18,
-  },
-  addButton: {
-    backgroundColor: "green",
-    padding: 10,
-    borderRadius: 5,
-    marginBottom: 10,
-  },
-  addButtonText: {
-    color: "white",
-    fontWeight: "bold",
-    textAlign: "center",
-    fontSize: 18,
   }
 });
