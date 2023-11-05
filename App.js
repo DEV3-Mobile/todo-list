@@ -18,8 +18,15 @@ export default function App() {
     setTasks((currentTasks) => [...currentTasks, taskToAdd]);
   }
 
+  const deleteTaskHandler = (index) => {
+    const tempTasks = [...tasks];//tasks is read-only dus in tijdelijke array stoppen die je dan kan splicen, het resultaat stop je in de state "wachtrij" met setTasks
+    tempTasks.splice(index, 1);
+    // console.log(tempTasks);
+    setTasks(tempTasks);
+  };
+
   const renderItem = (itemData) => (
-    <TaskItem taskname={itemData.item} />
+    <TaskItem taskId={itemData.index} taskname={itemData.item} onDelete={deleteTaskHandler} />
   );
 
   return (

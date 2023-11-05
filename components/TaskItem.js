@@ -5,21 +5,21 @@ const TaskItem = props => {
   return (
     <View style={styles.task}>
       <Text
-        style={styles.itemList}>{props.taskname}</Text>
+        style={styles.itemList}>{props.taskId} - {props.taskname}</Text>
       <View
         style={styles.taskButtons}>
         <TouchableOpacity
-          onPress={() => console.log("should delete")}>
+          onPress={() => { console.log("should edit") }}>
           <Text
             style={styles.editButton}>Edit</Text>
         </TouchableOpacity>
         <TouchableOpacity
-          onPress={() => { console.log("should delete") }}>
+          onPress={() => props.onDelete(props.taskId)}>
           <Text
             style={styles.deleteButton}>Delete</Text>
         </TouchableOpacity>
       </View>
-    </View>
+    </View >
   );
 }
 
