@@ -18,8 +18,9 @@ export default function App() {
     // const tasksTemp = tasks;
     // tasksTemp.push(enteredTask);
     // setTasks(tasksTemp);
+    // niet nodig --> return nieuwe array met spread syntax + entered task op laatste index.
     setTasks((currentTasks) => [...currentTasks, enteredTask]);
-    setEnteredTask("");
+    setEnteredTask("");//enteredTaks leegmaken
   }
 
   const renderItem = (itemData) => (
