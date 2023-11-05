@@ -26,7 +26,11 @@ export default function App() {
   };
 
   const renderItem = (itemData) => (
-    <TaskItem taskId={itemData.index} taskname={itemData.item} onDelete={deleteTaskHandler} />
+    <TaskItem
+      taskId={itemData.index}
+      taskname={itemData.item}
+      onDelete={deleteTaskHandler}
+    />
   );
 
   return (
