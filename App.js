@@ -6,7 +6,7 @@ import TaskItem from './components/TaskItem';
 //Task = todo item
 
 export default function App() {
-  const [enteredTask, setEnteredTask] = useState('');
+  const [enteredTask, setEnteredTask] = useState("");
   const [tasks, setTasks] = useState([]);
 
   const taskInputHandler = (enteredText) => {
@@ -19,6 +19,7 @@ export default function App() {
     // tasksTemp.push(enteredTask);
     // setTasks(tasksTemp);
     setTasks((currentTasks) => [...currentTasks, enteredTask]);
+    setEnteredTask("");
   }
 
   const renderItem = (itemData) => (
