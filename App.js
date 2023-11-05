@@ -21,6 +21,10 @@ export default function App() {
     setTasks((currentTasks) => [...currentTasks, enteredTask]);
   }
 
+  const renderItem = (itemData) => (
+    <TaskItem taskname={itemData.item} />
+  );
+
   return (
     <View style={styles.screen}>
       <StatusBar style="auto" />
@@ -34,11 +38,7 @@ export default function App() {
         />
         <Button title="ADD" onPress={addTaskHandler} />
       </View>
-      <FlatList data={tasks} renderItem={(itemData) => (
-        <TaskItem taskname={itemData.item} />
-      )} />
-
-      //https://pastebin.com/SwRT2shN
+      <FlatList data={tasks} renderItem={renderItem} />
     </View >
   );
 }
